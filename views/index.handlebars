@@ -3,20 +3,15 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search">
+      <form action="/search" method="GET">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
-
-          <!--set condition of search-->
-          <select class="btn btn-outline-danger" name="condition" id="search-condition">
-            <option selected>搜尋條件</option>
-            <option value="name" {{#each name}}selected{{/each}}>餐廳名稱</option>
-            <option value="name" {{#each category}}selected{{/each}}>餐廳類別</option>
-          </select>
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+            <button class="btn btn-major" type="submit" id="search-button">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
         </div>
       </form>
