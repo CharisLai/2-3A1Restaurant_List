@@ -1,7 +1,11 @@
 //require packages used in the project
 const express = require('express')
-// Loading mongoose
+
+// Load mongoose
 const mongoose = require('mongoose')
+
+// Load model
+const restaurant = require('./models/restaurant')
 
 const app = express()
 
