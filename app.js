@@ -1,6 +1,23 @@
 //require packages used in the project
 const express = require('express')
+// Loading mongoose
+const mongoose = require('mongoose')
+
 const app = express()
+
+//set online to mongoDB
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error!')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
+
 const port = 3000
 //require express-handlebars here
 const exphbs = require('express-handlebars')
