@@ -1,11 +1,10 @@
 //require packages used in the project
 const express = require('express')
-
 // Load mongoose
 const mongoose = require('mongoose')
 
 // Load model
-const restaurant = require('./models/restaurant')
+const Restaurant = require('./models/restaurant')
 
 const app = express()
 
@@ -38,13 +37,21 @@ app.use(express.static('public'))
 //routes setting -index
 app.get('/', (req, res) => {
   //past the restaurant data into 'index' partial template
-  res.render('index', { restaurants: restaurantList.results });
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.error(error))
 })
 
+
+
 //routes show
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurant })
+app.get('/restaurants/:id', (req, res) => {
+  const {id} = req.params
+  Restaurant.findById(id)
+  .lean()
+  .then( restaurants => res.render('show', { restaurants }))
+  .catch(error => console.error(error))
 })
 //routes function_Search>>name&category
 app.get('/search', (req, res) => {
