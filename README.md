@@ -9,7 +9,7 @@
 <ul>
 <li>Node.js 10.15.0<br>
 <li>Express 4.17.1<br>
-<li>Express-Handlebars 3.0.0<br>
+<li>Express-Handlebars 4.0.2<br>
 <li>Bootstrap 4.3.1<br>
 <li>Font-awesome 5.8.1<br>
 </ul>

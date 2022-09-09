@@ -2,7 +2,8 @@
 const express = require('express')
 // Load mongoose
 const mongoose = require('mongoose')
-
+// Load body-parser
+const bodyParser = require('body-parser')
 // Load model
 const Restaurant = require('./models/restaurant')
 
@@ -16,7 +17,6 @@ const db = mongoose.connection
 db.on('error', () => {
   console.log('mongodb error!')
 })
-
 db.once('open', () => {
   console.log('mongodb connected!')
 })
@@ -31,6 +31,8 @@ const restaurantList = require('./restaurant.json')
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 //setting static files
 app.use(express.static('public'))
 
@@ -43,16 +45,21 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-
+//new layout
+app.get("/restaurants/new", (req, res) => {
+  res.render("new")
+})
 
 //routes show
 app.get('/restaurants/:id', (req, res) => {
-  const {id} = req.params
+  console.log('===')
+  const { id } = req.params
   Restaurant.findById(id)
-  .lean()
-  .then( restaurants => res.render('show', { restaurants }))
-  .catch(error => console.error(error))
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.error(error))
 })
+
 //routes function_Search>>name&category
 app.get('/search', (req, res) => {
   console.log('req.keyword', req.query.keyword)
@@ -63,6 +70,14 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants, keyword })
 })
 
+
+//Create NewRestaurantData
+app.post('/restaurants', (req, res) => {
+  const object = req.body
+  Restaurant.create({object})
+    .then(() => res.redirect("/"))
+    .catch(error => console.error(error))
+})
 
 //start and listen on the Express sever
 app.listen(port, () => {
