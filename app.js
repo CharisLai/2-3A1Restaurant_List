@@ -50,6 +50,15 @@ app.get("/restaurants/new", (req, res) => {
   res.render("new")
 })
 
+//routes -edit
+app.get('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.error(error))
+})
+
 //routes show
 app.get('/restaurants/:id', (req, res) => {
   console.log('===')
@@ -59,6 +68,8 @@ app.get('/restaurants/:id', (req, res) => {
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.error(error))
 })
+
+
 
 //routes function_Search>>name&category
 app.get('/search', (req, res) => {
@@ -74,9 +85,22 @@ app.get('/search', (req, res) => {
 //Create NewRestaurantData
 app.post('/restaurants', (req, res) => {
   const object = req.body
-  Restaurant.create({object})
+  Restaurant.create({ object })
     .then(() => res.redirect("/"))
     .catch(error => console.error(error))
+})
+
+//routes -save
+app.post('/restaurants/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
 })
 
 //start and listen on the Express sever
