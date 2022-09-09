@@ -46,8 +46,8 @@ app.get('/', (req, res) => {
 })
 
 //new layout
-app.get("/restaurants/new", (req, res) => {
-  res.render("new")
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
 })
 
 //routes -edit
@@ -69,24 +69,37 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-
-
 //routes function_Search>>name&category
 app.get('/search', (req, res) => {
   console.log('req.keyword', req.query.keyword)
-  const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
-  })
-  res.render('index', { restaurants, keyword })
+  const keyword = req.query.keyword.trim().toLowerCase()
+  return Restaurant.find()
+    .lean()
+    .then((restaurant => {
+      const Search = restaurant.filter((restaurant) => {
+        return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
+      })
+      res.render('index', { restaurants: Search, keyword })
+    }))
 })
-
 
 //Create NewRestaurantData
 app.post('/restaurants', (req, res) => {
-  // const name = req.body
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const google_map = req.body.google_map
+  const rating = req.body.rating
+  const description = req.body.description
+  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+
   Restaurant.create(req.body)
-    .then(() => res.redirect("/"))
+    .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
 
