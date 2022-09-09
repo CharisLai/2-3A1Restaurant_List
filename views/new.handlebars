@@ -5,29 +5,21 @@
       <label for="name" class="form-label">店名
         <span class="text-danger">*</span>
       </label>
-      <input
-        type="text"
-        class="form-control"
-        id="name"
-        placeholder="test"
-        name="name"
-        required />
+      <input type="text" class="form-control" id="name" placeholder="店名" name="name" required />
     </div>
     <div class="mb-3">
       <label for="name_en" class="form-label">英文店名
         <span class="text-danger">*</span>
       </label>
-      <input type="text" class="form-control" id="name_en" placeholder="test" name="name_en" required />
+      <input type="text" class="form-control" id="name_en" placeholder="name_en" name="name_en" required />
     </div>
     <div class="mb-3">
       <label for="category" class="form-label">分類
         <span class="text-danger">*</span>
       </label>
-      <input type="text" class="form-control" id="category" 
-      placeholder="類別" 
-      list="categoryOptions"
-      name="category" required />
-      <datalist id ="categoryOptions">
+      <input type="text" class="form-control" id="category" placeholder="類別" list="categoryOptions" name="category"
+        required />
+      <datalist id="categoryOptions">
         <option>咖啡/下午茶</option>
         <option>客家料理</option>
         <option>日本料理</option>
@@ -35,6 +27,7 @@
         <option>美式餐廳</option>
         <option>越南料理</option>
         <option>韓式料理</option>
+        <option>中東料理</option>
       </datalist>
     </div>
     <div class="mb-3">
@@ -43,17 +36,11 @@
     </div>
     <div class="mb-3">
       <label for="location" class="form-label">地址<span class="text-danger">*</span></label>
-      <input
-      type="text"
-      class="form-control"
-      id="location"
-      placeholder="台中市"
-      name="location"
-      required />
+      <input type="text" class="form-control" id="location" placeholder="縣市區里路巷弄號" name="location" required />
     </div>
     <div class="mb-3">
       <label for="phone" class="form-label">電話<span class="text-danger">*</span></label>
-      <input type="tel" class="form-control" id="phone" placeholder="04-111111111" name="phone" required />
+      <input type="tel" class="form-control" id="phone" placeholder="00-1234567" name="phone" required />
     </div>
     <div class="mb-3">
       <label for="google_map" class="form-label">Google地圖連結<span class="text-danger">*</span></label>
@@ -70,9 +57,9 @@
     <div class="text-center">
       <button type="submit" class="btn btn-primary">新增餐廳</button>
       <a href="/">
-      <button type="button" class="btn btn-outline-secondary">
-        返回首頁
-      </button></a>
+        <button type="button" class="btn btn-outline-secondary">
+          返回首頁
+        </button></a>
       <button type="reset" class="btn btn-outline-danger">重新輸入</button>
     </div>
   </form>

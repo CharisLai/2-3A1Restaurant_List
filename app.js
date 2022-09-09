@@ -84,13 +84,13 @@ app.get('/search', (req, res) => {
 
 //Create NewRestaurantData
 app.post('/restaurants', (req, res) => {
-  const object = req.body
-  Restaurant.create({ object })
+  // const name = req.body
+  Restaurant.create(req.body)
     .then(() => res.redirect("/"))
     .catch(error => console.error(error))
 })
 
-//routes -save
+//routes -edit-save
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name

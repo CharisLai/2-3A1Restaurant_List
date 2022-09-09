@@ -2,8 +2,13 @@
 <h3>實際畫面</h3>
 <img src="https://user-images.githubusercontent.com/103364394/187954741-b8ad74b6-6b29-4882-a170-be0cf4412aaf.png">
 
-<h3>功能用途</h3>
-將走過看過嚐鮮過的餐廳、Bar、據點等相關資訊，收納整理成自己的清單。
+<h3>功能</h3>
+<ul>
+<li>新增餐廳<br>
+<li>瀏覽餐廳詳細資訊<br>
+<li>修改餐廳詳細資訊<br>
+<li>刪除餐廳<br>
+</ul>
 
 <h3>開發工具</h3>
 <ul>
