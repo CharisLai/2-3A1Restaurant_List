@@ -1,4 +1,4 @@
-//require packages used in the project
+// require packages used in the project
 const express = require('express')
 // Load mongoose
 const mongoose = require('mongoose')
@@ -9,7 +9,7 @@ const Restaurant = require('./models/restaurant')
 
 const app = express()
 
-//set online to mongoDB
+// set online to mongoDB
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
@@ -22,35 +22,32 @@ db.once('open', () => {
 })
 
 const port = 3000
-//require express-handlebars here
+// require express-handlebars here
 const exphbs = require('express-handlebars')
-//setting restaurant.json
-const restaurantList = require('./restaurant.json')
-
-//setting template engine
+// setting template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//setting static files
+// setting static files
 app.use(express.static('public'))
 
-//routes setting -index
+// routes setting -index
 app.get('/', (req, res) => {
-  //past the restaurant data into 'index' partial template
+  // past the restaurant data into 'index' partial template
   Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
 })
 
-//new layout
+// new layout
 app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 
-//routes -edit
+// routes -edit
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -59,7 +56,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.error(error))
 })
 
-//routes show
+// routes show
 app.get('/restaurants/:id', (req, res) => {
   console.log('===')
   const { id } = req.params
@@ -69,41 +66,28 @@ app.get('/restaurants/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-//routes function_Search>>name&category
+// routes function_Search>>name&category
 app.get('/search', (req, res) => {
   console.log('req.keyword', req.query.keyword)
   const keyword = req.query.keyword.trim().toLowerCase()
   return Restaurant.find()
     .lean()
-    .then((restaurant => {
+    .then(restaurant => {
       const Search = restaurant.filter((restaurant) => {
         return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
       })
       res.render('index', { restaurants: Search, keyword })
-    }))
+    })
 })
 
-//Create NewRestaurantData
+// Create NewRestaurantData
 app.post('/restaurants', (req, res) => {
-  const name = req.body.name
-  const name_en = req.body.name_en
-  const category = req.body.category
-  const image = req.body.image
-  const location = req.body.location
-  const phone = req.body.phone
-  const google_map = req.body.google_map
-  const rating = req.body.rating
-  const description = req.body.description
-  return Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description })
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-
   Restaurant.create(req.body)
     .then(() => res.redirect('/'))
     .catch(error => console.error(error))
 })
 
-//routes -edit-save
+// routes -edit-save
 app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
@@ -116,7 +100,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//routes -delete
+// routes -delete
 app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -126,7 +110,7 @@ app.post('/restaurants/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
-//start and listen on the Express sever
+// start and listen on the Express sever
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)
 })
