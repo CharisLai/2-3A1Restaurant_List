@@ -1,12 +1,9 @@
 // require packages used in the project
 const express = require('express')
-// Load mongoose
-const mongoose = require('mongoose')
-// Load body-parser
-const bodyParser = require('body-parser')
-// Load model
-const Restaurant = require('./models/restaurant')
-
+const mongoose = require('mongoose') // Load mongoose
+const bodyParser = require('body-parser') // Load body-parser
+const methodOverride = require('method-override') // Load method-override
+const Restaurant = require('./models/restaurant') // Load model
 const app = express()
 
 // set online to mongoDB
@@ -30,8 +27,8 @@ app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// setting static files
-app.use(express.static('public'))
+app.use(methodOverride('_method')) // setting methodOverride
+app.use(express.static('public'))// setting static files
 
 // routes setting -index
 app.get('/', (req, res) => {
@@ -58,7 +55,6 @@ app.get('/restaurants/:id/edit', (req, res) => {
 
 // routes show
 app.get('/restaurants/:id', (req, res) => {
-  console.log('===')
   const { id } = req.params
   Restaurant.findById(id)
     .lean()
@@ -88,7 +84,7 @@ app.post('/restaurants', (req, res) => {
 })
 
 // routes -edit-save
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   return Restaurant.findById(id)
@@ -101,7 +97,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 })
 
 // routes -delete
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant =>
