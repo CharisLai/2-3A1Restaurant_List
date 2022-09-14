@@ -1,6 +1,7 @@
 <h2>我的餐廳清單</h2>
 <h3>實際畫面</h3>
-<img src="https://user-images.githubusercontent.com/103364394/187954741-b8ad74b6-6b29-4882-a170-be0cf4412aaf.png">
+<img src="https://assets-lighthouse.alphacamp.co/uploads/answer/cover/454828/small______2022-09-11___4.55.53.png?t=1662887214?t=1662887214
+">
 
 <h3>功能</h3>
 <ul>
