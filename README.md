@@ -12,11 +12,11 @@
 
 <h3>開發工具</h3>
 <ul>
-<li>Node.js 10.15.0<br>
-<li>Express 4.17.1<br>
+<li>Node.js 14.16.0<br>
+<li>Express 4.16.4<br>
 <li>Express-Handlebars 4.0.2<br>
 <li>Bootstrap 4.3.1<br>
-<li>Font-awesome 5.8.1<br>
+<li>Mongoose 5.9.7<br>
 </ul>
 
 <h3>使用說明</h3>

@@ -3,9 +3,10 @@
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/search" method="GET">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
+      <h4 class="mb-2">尋找餐廳：</h4>
+      <form action="/search" method="GET"></form>
+      <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+        <div class="input-group mb-2 mb-sm-0 mr-sm-2">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
@@ -14,19 +15,31 @@
             </button>
           </div>
         </div>
-      </form>
-      <div class="text-right">
-        <a href="/restaurants/new">
-          <button class="btn btn-primary">新增餐廳</button></a>
       </div>
+      </form>
     </div>
   </div>
 </div>
 
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-5 px-5">
+
+  <!-- sort -->
+  <div class="d-flex align-items-center justify-content-end mb-3">
+    <i class="fa-solid fa-arrow-up-arrow-down text-secondary"></i>
+    <form action="./sortby" method="GET" id="sortby">
+    <select onchange="this.form.submit()" class="form-select" name="sort" form="sortby">
+      <option selected>選擇排序</option>
+      <option value="name">A -> Z </option>
+      <option value="name-deasc">Z -> A </option>
+      <option value="category">類別</option>
+      <option value="location">地區</option>
+    </select>
+    </form>
+  </div>
+  <!-- main -->
   <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
+    <div class="col-md-20 col-15 mx-auto">
       <div class="card-columns row row-cols-3">
         {{#each restaurants}}
         <div class="card mb-3">

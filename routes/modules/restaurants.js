@@ -25,20 +25,6 @@ router.get('/:id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// routes function_Search>>name&category
-router.get('/search', (req, res) => {
-  console.log('req.keyword', req.query.keyword)
-  const keyword = req.query.keyword.trim().toLowerCase()
-  return Restaurant.find()
-    .lean()
-    .then(restaurant => {
-      const Search = restaurant.filter((restaurant) => {
-        return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.includes(keyword)
-      })
-      res.render('index', { restaurants: Search, keyword })
-    })
-})
-
 // Create NewRestaurantData
 router.post('/', (req, res) => {
   Restaurant.create(req.body)
@@ -49,10 +35,18 @@ router.post('/', (req, res) => {
 // routes -edit-save
 router.put('/:id', (req, res) => {
   const id = req.params.id
-  const name = req.body.name
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
   return Restaurant.findById(id)
     .then(restaurant => {
       restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.google_map = google_map
+      restaurant.rating = rating
+      restaurant.description = description
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
