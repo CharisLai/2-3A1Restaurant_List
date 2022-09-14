@@ -21,17 +21,18 @@
 
 <h3>使用說明</h3>
 <ol>
-<li>請先確認有安裝 node.js 與 npm</li>
+<li>請安裝 node.js 與 npm</li>
 
-<li>將專案 clone 到本地</li>
+<li>將專案<a href="https://github.com/CharisLai/2-3A1Restaurant_List.git">clone</a> 到本地</li>
+
 
 <li>在本地開啟之後，透過終端機進入資料夾，輸入： npm install</li>
 
-<li>安裝完畢後，繼續輸入： npm run dev</li>
+<li>設定環境變數<b> MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.popacfe.mongodb.net/<Your MongoDB Table>?retryWrites=true&w=majority<b></li>
 
-<li>若看見此行訊息則代表順利運行， express is listening on localhost:3000</li>
+<li>輸入 <strong>npm run dev</strong>執行專案</li>
 
-<li>接下來就可以打開瀏覽器進入以下網址 http://localhost:3000 開始使用囉！</li>
+<li>打開瀏覽器輸入<b> http://localhost:3000</b> 即可開始使用</li>
 
 <li>若欲暫停使用，按下 ctrl + c 即可</li>
 <ol>
