@@ -1,5 +1,6 @@
 // require packages used in the project
 const express = require('express')
+const session = require('express-session')
 const bodyParser = require('body-parser') // Load body-parser
 const methodOverride = require('method-override') // Load method-override
 const exphbs = require('express-handlebars') // require express-handlebars here
@@ -10,6 +11,13 @@ const port = 3000
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' })) // setting template engine
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'Secret',
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method')) // setting methodOverride
 app.use(express.static('public'))// setting static files
