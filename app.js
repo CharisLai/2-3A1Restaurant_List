@@ -5,7 +5,7 @@ const bodyParser = require('body-parser') // Load body-parser
 const methodOverride = require('method-override') // Load method-override
 const exphbs = require('express-handlebars') // require express-handlebars here
 const routes = require('./routes')
-
+const usePassport = require('./config/passport')
 const app = express()
 const port = 3000
 
@@ -20,6 +20,7 @@ app.use(session({
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method')) // setting methodOverride
+usePassport(app)
 app.use(express.static('public'))// setting static files
 require('./config/mongoose') // refactor mongoose config
 app.use(routes)
