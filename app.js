@@ -23,6 +23,11 @@ app.use(methodOverride('_method')) // setting methodOverride
 usePassport(app)
 app.use(express.static('public'))// setting static files
 require('./config/mongoose') // refactor mongoose config
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 app.use(routes)
 
 // start and listen on the Express sever
