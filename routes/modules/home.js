@@ -6,8 +6,9 @@ const Restaurant = require('../../models/restaurant') // Load model
 
 // routes setting -index
 router.get('/', (req, res) => {
+  const userId = req.user._id
   // past the restaurant data into 'index' partial template
-  Restaurant.find()
+  Restaurant.find({ userId })
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
@@ -46,7 +47,7 @@ router.get('/search', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => {
-      const restaurant = restaurants.filter(restaurant => {
+      const Restaurants = restaurants.filter(restaurant => {
         const NameMatched = restaurants.name.toLowerCase().includes(keyword)
         const CategoryMatched = restaurants.category.toLowerCase().includes(keyword)
         return (NameMatched || CategoryMatched)
