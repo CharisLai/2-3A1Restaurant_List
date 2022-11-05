@@ -1,4 +1,11 @@
-/node_modules
+node_modules
 *.log
 *.gz
 .env
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+Icon?
+*.log
+*.gz
