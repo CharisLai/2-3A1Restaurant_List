@@ -6,13 +6,9 @@ const methodOverride = require('method-override') // Load method-override
 const flash = require('connect-flash')
 const exphbs = require('express-handlebars') // require express-handlebars here
 
-console.log(process.env)
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
-console.log('---------------')
-console.log(process.env)
-
 
 const routes = require('./routes')
 const usePassport = require('./config/passport')
@@ -27,7 +23,6 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method')) // setting methodOverride
 usePassport(app)
@@ -39,6 +34,7 @@ app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.success_msg = req.flash('success_msg')
   res.locals.warning_msg = req.flash('warning_msg')
+  res.locals.error = req.flash('errors')
   next()
 })
 app.use(routes)

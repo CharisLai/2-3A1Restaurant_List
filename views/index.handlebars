@@ -1,9 +1,6 @@
-
 <!-- ./views/index.handlebars -->
 <!-- search bar -->
 <div class="container search-bar">
-  <a href="/restaurants/new">
-    <button class="btn btn-primary mb-3">新增餐廳</button></a>
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <h4 class="mb-2">尋找餐廳：</h4>
@@ -26,10 +23,11 @@
 
 <!-- restaurant list -->
 <div class="container mt-5 px-5">
-
   <!-- sort -->
   <div class="d-flex align-items-center justify-content-end mb-3">
     <i class="fa-solid fa-arrow-up-arrow-down text-secondary"></i>
+    <a href="/restaurants/new">
+    <button class="btn btn-primary mb-1">新增餐廳</button></a>
     <form action="./sortby" method="GET" id="sortby">
     <select onchange="this.form.submit()" class="form-select" name="sort" form="sortby">
       <option selected>選擇排序</option>
@@ -61,7 +59,7 @@
             <a href="/restaurants/{{this._id}}/edit"><button class="btn btn-link btn-sm">Edit</button></a>
             <a href="/restaurants/{{this._id}}"><button class="btn btn-link btn-sm">Details</button></a>
             <form action="/restaurants/{{this._id}}?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit" class="btn btn-danger ">delete</button>
+              <button type="submit" class="btn btn-danger ">Delete</button>
             </form>
           </div>
         </div>

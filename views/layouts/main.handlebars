@@ -20,17 +20,17 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">
-        {{#if isAuthenticated}}
+
           <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
             width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-          {{ user.name}}'s {{/if}}餐廳清單
+          {{#if isAuthenticated}}{{ user.name}}的{{/if}}餐廳清單
         </a>
         <div class="text-right">
-        {{#if isAuthenticated}}
-        <a href="/users/logout" class="btn btn-inline-light">Logout</a>
-        {{else}}
-        <a href="/users/login" class="btn btn-inline-light">Login</a>
-        {{/if}}
+          {{#if isAuthenticated}}
+          <a href="/users/logout" class="btn btn-outline-primary">Logout</a>
+          {{else}}
+          <a href="/users/login" class="btn btn-outline-primary">Login</a>
+          {{/if}}
         </div>
       </div>
     </nav>
@@ -43,7 +43,7 @@
   <!-- include javascript files here -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

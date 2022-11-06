@@ -4,13 +4,32 @@ const router = express.Router()
 
 const Restaurant = require('../../models/restaurant') // Load model
 
+// routes function_Search>>name&category
+router.get('/search', (req, res) => {
+  const keyword = req.query.keyword.trim().toLowerCase()
+  return Restaurant.find()
+    .lean()
+    .then((restaurant) => {
+      const Search = restaurant.filter((data) => {
+        return data.name.toLowerCase().includes(keyword) || data.category.includes(keyword)
+      })
+      res.render('index', { restaurants: Search, keyword })
+      console.log(keyword)
+    })
+    .catch(error => {
+      console.error(error)
+      res.render('error')
+    })
+})
+
 // routes setting -index
 router.get('/', (req, res) => {
   const userId = req.user._id
   // past the restaurant data into 'index' partial template
   Restaurant.find({ userId })
     .lean()
-    .then(restaurants => res.render('index', { restaurants }))
+    .then(restaurants => res.render('index', { restaurants }
+    ))
     .catch(error => console.error(error))
 })
 
@@ -41,19 +60,5 @@ router.get('/sortby', (req, res) => {
       .catch(error => console.error(error))
   }
 })
-// routes function_Search>>name&category
-router.get('/search', (req, res) => {
-  const keyword = req.query.keyword.toLowerCase()
-  Restaurant.find()
-    .lean()
-    .then(restaurants => {
-      const Restaurants = restaurants.filter(restaurant => {
-        const NameMatched = restaurants.name.toLowerCase().includes(keyword)
-        const CategoryMatched = restaurants.category.toLowerCase().includes(keyword)
-        return (NameMatched || CategoryMatched)
-      })
-    })
-    .then(res.render('index', { restaurant, keyword }))
-    .catch(error => console.error(error))
-})
+
 module.exports = router
