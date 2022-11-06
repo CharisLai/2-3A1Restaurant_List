@@ -1,6 +1,7 @@
-<h2>我的餐廳清單</h2>
+<h2>餐廳清單</h2>
 <h3>實際畫面</h3>
-<img src="https://user-images.githubusercontent.com/103364394/190192351-435d1de9-3d27-45e9-bcc8-3cfc0ac6a5bd.png">
+<img src="https://user-images.githubusercontent.com/103364394/200159290-53616996-8c64-4d6b-8ee4-3b43fee311dd.png">
+
 
 <h3>功能</h3>
 <ul>
@@ -23,14 +24,13 @@
 <ol>
 <li>請安裝 node.js 與 npm</li>
 
-<li>將專案<a href="https://github.com/CharisLai/2-3A1Restaurant_List.git">clone</a> 到本地</li>
+<li>將專案<a href="https://github.com/CharisLai/3A1Restaurant_List.git">clone</a> 到本地</li>
 
-
-<li>在本地開啟之後，透過終端機進入資料夾，輸入<b> npm install</b></li>
+<li>在本地開啟之後，透過終端機進入指定資料夾，輸入<b> npm install</b></li>
 
 <li>設定環境變數<b> MONGODB_URI=mongodb+srv://<Your MongoDB Account>:<Your MongoDB Password>@cluster0.popacfe.mongodb.net/<Your MongoDB Table>?retryWrites=true&w=majority</b></li>
 
-<li>輸入 <strong>npm run dev</strong>執行專案</li>
+<li>輸入 <strong>npm run start</strong>執行專案</li>
 
 <li>打開瀏覽器輸入 <b> http://localhost:3000</b> 即可開始使用</li>
 
