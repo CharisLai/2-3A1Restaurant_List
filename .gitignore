@@ -1,7 +1,7 @@
 node_modules
+.env
 *.log
 *.gz
-.env
 ._*
 Thumbs.db
 ehthumbs.db
